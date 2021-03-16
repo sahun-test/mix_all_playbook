@@ -1,0 +1,13 @@
+---
+- name: apt-get update
+  apt:
+          update_cache: yes
+
+- name: check and install docker.io
+  apt:
+          name: docker.io
+          state: present
+- name: check and install docker-compose
+  apt:
+          name: docker-compose
+          state: present

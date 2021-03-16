@@ -1,0 +1,26 @@
+---
+- hosts: host1
+  become: yes
+  tasks:
+    - block:
+        - name: install apache2
+          apt:
+            name: apache2
+            state: absent
+        - name: install php
+          apt:
+            name: php
+            state: present
+      when: ansible_facts['os_family'] == "Debian"
+    
+    - block:
+        - name: install apache2
+          yum:
+            name: php
+            state: present
+        - name: install apache2
+          yum:
+            name: httpd
+            state: present
+      when: ansible_facts['os_family'] == "Redhat"    
+  

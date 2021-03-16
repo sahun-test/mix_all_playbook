@@ -1,0 +1,21 @@
+---
+- hosts: host1
+  become: yes
+  tasks:
+  - name: apt update
+    apt:
+     update_cache: yes
+  - name: check php installed or not
+    apt:
+     name: ['php','libapache2-mod-php']
+     state: latest
+  - name: edit php.ini file for memory changes
+    lineinfile:
+        path: /etc/php/7.4/apache2/php.ini
+        line: memory_limit = 131M
+    notify: restart apache2/php
+  handlers:
+    - name: restart apache2/php
+      service:
+        name: apache2
+        state: reloaded

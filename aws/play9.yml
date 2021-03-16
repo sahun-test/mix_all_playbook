@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+          - name: Simple PUT operation
+            aws_s3:
+                    bucket: sahun.ansible2
+                    object: play8.yml
+                    dest: /home/ubuntu/aws/play8.yml
+                    mode: get

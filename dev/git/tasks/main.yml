@@ -1,0 +1,4 @@
+---
+- name: run git script on dev system
+  script: script.sh
+# tasks file for git

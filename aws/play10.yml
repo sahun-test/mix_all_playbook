@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+          - name : run ec2
+            ec2:
+                    key_name: lab1
+                    group: docker-test
+                    instance_type: t2.micro
+                    region: ap-south-1
+                    image: ami-0d758c1134823146a
+                    wait: yes
+                    wait_timeout: 500
+                    vpc_subnet_id: subnet-cfafcd83
+                    volumes:
+                      - device_name: /dev/sdb
+                        volume_size: 8
+                    instance_tags:
+                        name: appservers
+                        os: ubuntu

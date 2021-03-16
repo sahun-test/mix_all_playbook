@@ -1,0 +1,9 @@
+---
+   - name: install apache2
+     yum:
+            name: php
+            state: present
+   - name: install apache2
+     yum:
+            name: httpd
+            state: present

@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+        - name: Create an empty bucket
+          aws_s3:
+            bucket: sahun.ansible2
+            mode: list
+            #            permission: public-read

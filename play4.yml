@@ -1,0 +1,14 @@
+---
+- hosts: host1
+  become: yes
+  tasks:
+  - import_tasks: /home/ubuntu/practice/Debian.yml
+  - name: create user name as {{ item }}
+    user:
+      name: "{{ item }}"
+      state: present
+    with_items:
+        - user1
+        - user2
+        - user3
+        - user4

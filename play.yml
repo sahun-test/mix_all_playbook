@@ -1,0 +1,40 @@
+---
+- hosts: host1
+  become: yes
+  tasks:
+  - name: Create a new folder
+    file:
+     path: /home/ubuntu/test_folder
+     state: directory
+  - name: change ownership
+    file:
+     path: /home/ubuntu/test_folder
+     state: directory
+     owner: root
+     group: ubuntu
+  - name: install apache2
+    apt:
+            name: apache2
+            state: present
+  - name: copy 123 files on dev system
+    copy:
+            src=/home/ubuntu/123.html
+            dest=/var/www/html/123.html
+    notify:
+            - restart apache2
+  - name: copy 456 files on dev system
+    copy:
+            src=/home/ubuntu/456.html
+            dest=/var/www/html/456.html
+    notify:
+            - stop apache2
+  handlers:
+          - name: restart apache2
+            service:
+                    name: apache2
+                    state: restarted
+          - name: stop apache2
+            service:
+                    name: apache2
+                    state: stopped
+

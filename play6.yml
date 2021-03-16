@@ -1,0 +1,14 @@
+---
+- hosts: dev
+  become: yes
+  tasks:
+  - name: install apache2
+    apt:
+            name: apache2
+            state: present
+    when: ansible_facts['os_family'] == "Debian"      
+  - name: install apache2
+    yum:
+            name: httpd
+            state: present
+    when: ansible_facts['os_family'] == "RedHat"    

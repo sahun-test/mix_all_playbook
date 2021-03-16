@@ -1,0 +1,6 @@
+---
+- hosts: dev
+  become: yes
+  roles:
+          - docker
+          - git

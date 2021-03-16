@@ -1,0 +1,25 @@
+---
+- hosts: host1
+  become: yes
+  vars:
+          - a: user1
+          - b: user2
+          - c: user3
+          - d: user4
+  tasks:
+  - name: create user name as {{ a }}
+    user:
+      name: "{{ a }}"
+      state: present
+  - name: create user name as {{ b }}
+    user:
+      name: "{{ b }}"
+      state: present
+  - name: create user name as {{ c }}
+    user:
+      name: "{{ c }}"
+      state: present
+  - name: create user name as user4
+    user:
+      name: user4
+      state: present
